@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>MyNotes.Domain</RootNamespace>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="NLog.Web.AspNetCore" />
+        <PackageReference Include="NLog" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\nlog.config">
+        <Link>nlog.config</Link>
+      </None>
+    </ItemGroup>
+
+</Project>
