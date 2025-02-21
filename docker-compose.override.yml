@@ -1,0 +1,9 @@
+services:
+  notes_api:
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_URLS: "https://+:8081;http://+:8080"
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${HTTPS_DEV_CERTS_PASSWORD}
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/home/app/.aspnet/https/Notes.API.pfx"
+    volumes:
+      - ./certs/.aspnet/https/Notes.API.pfx:/home/app/.aspnet/https/Notes.API.pfx:ro

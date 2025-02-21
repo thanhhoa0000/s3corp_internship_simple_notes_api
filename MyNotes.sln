@@ -1,11 +1,72 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{44BF99F5-410E-4E7F-83C8-9C2327C45914}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{197EC447-F775-4710-8135-85D2E1E32A2F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{71F2CC43-9B07-4C73-897B-541064FCEB53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{18F290CF-9BC6-4566-BCF3-FA7A692E2467}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{268C75C4-FF64-4130-B9FE-B21B224865EC}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		nlog.config = nlog.config
+		.env = .env
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{81466FD7-B9D6-4219-9BFB-D0CF40ACF0CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{10F9F2A0-A973-4F88-BADF-A8F1248D5FF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{3C94EFFC-E1AF-4124-847D-9F2469E65D43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{043304A2-C33F-4E7F-9B7C-90D40C3B9914}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{C5FD16B4-2E43-485B-BA71-115358ABF4A0}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10F9F2A0-A973-4F88-BADF-A8F1248D5FF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10F9F2A0-A973-4F88-BADF-A8F1248D5FF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10F9F2A0-A973-4F88-BADF-A8F1248D5FF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10F9F2A0-A973-4F88-BADF-A8F1248D5FF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C94EFFC-E1AF-4124-847D-9F2469E65D43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C94EFFC-E1AF-4124-847D-9F2469E65D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C94EFFC-E1AF-4124-847D-9F2469E65D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C94EFFC-E1AF-4124-847D-9F2469E65D43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{043304A2-C33F-4E7F-9B7C-90D40C3B9914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{043304A2-C33F-4E7F-9B7C-90D40C3B9914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{043304A2-C33F-4E7F-9B7C-90D40C3B9914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{043304A2-C33F-4E7F-9B7C-90D40C3B9914}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5FD16B4-2E43-485B-BA71-115358ABF4A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5FD16B4-2E43-485B-BA71-115358ABF4A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5FD16B4-2E43-485B-BA71-115358ABF4A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5FD16B4-2E43-485B-BA71-115358ABF4A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A} = {81466FD7-B9D6-4219-9BFB-D0CF40ACF0CA}
+		{10F9F2A0-A973-4F88-BADF-A8F1248D5FF4} = {197EC447-F775-4710-8135-85D2E1E32A2F}
+		{3C94EFFC-E1AF-4124-847D-9F2469E65D43} = {44BF99F5-410E-4E7F-83C8-9C2327C45914}
+		{043304A2-C33F-4E7F-9B7C-90D40C3B9914} = {71F2CC43-9B07-4C73-897B-541064FCEB53}
+		{C5FD16B4-2E43-485B-BA71-115358ABF4A0} = {18F290CF-9BC6-4566-BCF3-FA7A692E2467}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C76E897-19B5-409C-9160-9CEA81EB17B5}
