@@ -19,8 +19,7 @@ global using AutoMapper;
 global using Asp.Versioning;
 global using Asp.Versioning.Builder;
 
-global using MyNotes.Application.Mapper;
-global using MyNotes.Application.Dtos;
-global using MyNotes.Application;
+global using MyNotes.Application.Interfaces;
+global using MyNotes.Application.Services;
 
-global using MyNotes.Domain.Interfaces;
+global using MyNotes.Application.Dtos;

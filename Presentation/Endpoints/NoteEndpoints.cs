@@ -1,6 +1,4 @@
-﻿using MyNotes.Domain.Entities;
-
-namespace MyNotes.Presentation.Endpoints;
+﻿namespace MyNotes.Presentation.Endpoints;
 
 public class NoteEndpoints : ICarterModule
 {
@@ -22,10 +20,9 @@ public class NoteEndpoints : ICarterModule
     }
 
     public async Task<Results<Ok<IEnumerable<NoteDto>>, BadRequest<string>>> GetNotes(
-        [FromServices] INoteRepository repository,
+        [FromServices] INoteService service,
         [FromServices] ILogger<NoteEndpoints> logger,
         HttpContext httpContext,
-        IMapper mapper,
         [FromQuery] int pageSize = 0,
         [FromQuery] int pageNumber = 1)
     {
@@ -33,8 +30,8 @@ public class NoteEndpoints : ICarterModule
         {
             logger.LogInformation("Getting notes...");
 
-            var notes = await repository
-                .GetAllAsync(tracked: false, pageSize: pageSize, pageNumber: pageNumber);
+            var notes = await service
+                .GetAllNotesAsync(tracked: false, pageSize: pageSize, pageNumber: pageNumber);
 
             var pagination = new Pagination()
             {
@@ -44,7 +41,7 @@ public class NoteEndpoints : ICarterModule
 
             httpContext.Response.Headers["X-Pagination"] = JsonSerializer.Serialize(pagination);
 
-            return TypedResults.Ok(mapper.Map<IEnumerable<NoteDto>>(notes));
+            return TypedResults.Ok(notes);
         }
         catch (Exception ex)
         {
@@ -55,18 +52,17 @@ public class NoteEndpoints : ICarterModule
     }
 
     public async Task<Results<Ok<NoteDto>, NotFound<string>, BadRequest<string>>> GetNote(
-        [FromServices] INoteRepository repository,
+        [FromServices] INoteService service,
         [FromServices] ILogger<NoteEndpoints> logger,
-        Guid noteId,
-        IMapper mapper)
+        Guid noteId)
     {
         try
         {
             logger.LogInformation("Getting note...");
 
-            var note = await repository.GetAsync(n => n.Id == noteId, tracked: false);
+            var note = await service.GetNoteByIdAsync(noteId, tracked: false);
 
-            return TypedResults.Ok(mapper.Map<NoteDto>(note));
+            return TypedResults.Ok(note);
         }
         catch (KeyNotFoundException ex)
         {
@@ -84,7 +80,7 @@ public class NoteEndpoints : ICarterModule
 
     public async Task<Results<Created, BadRequest<string>>> CreateNote(
         [FromBody] NoteDto noteDto,
-        [FromServices] INoteRepository repository,
+        [FromServices] INoteService service,
         [FromServices] ILogger<NoteEndpoints> logger,
         IMapper mapper)
     {
@@ -93,9 +89,8 @@ public class NoteEndpoints : ICarterModule
             logger.LogInformation("Creating note...");
 
             noteDto.Id = Guid.NewGuid();
-
-            var note = mapper.Map<Note>(noteDto);
-            await repository.CreateAsync(note);
+            
+            await service.CreateNoteAsync(noteDto);
 
             return TypedResults.Created($"/api/v1/notes/{noteDto.Id}");
         }
@@ -109,18 +104,16 @@ public class NoteEndpoints : ICarterModule
 
     public async Task<Results<NoContent, NotFound<string>, BadRequest<string>>> UpdateNote(
         [FromBody] NoteDto noteDto,
-        [FromServices] INoteRepository repository,
-        [FromServices] ILogger<NoteEndpoints> logger,
-        IMapper mapper)
+        [FromServices] INoteService service,
+        [FromServices] ILogger<NoteEndpoints> logger)
     {
         try
         {
             logger.LogInformation("Updating note...");
             
             noteDto.ModifiedAt = DateTime.UtcNow;
-            var note = mapper.Map<Note>(noteDto);
             
-            await repository.UpdateAsync(note);
+            await service.UpdateNoteAsync(noteDto);
             
             return TypedResults.NoContent();
         }
@@ -140,17 +133,15 @@ public class NoteEndpoints : ICarterModule
 
     public async Task<Results<NoContent, NotFound<string>, BadRequest<string>>>
         DeleteNote(
-            [FromServices] INoteRepository repository,
+            [FromServices] INoteService service,
             [FromServices] ILogger<NoteEndpoints> logger,
             Guid noteId)
     {
         try
         {
-            logger.LogInformation("Deleting note...");
+            logger.LogInformation("Deleting note...");git
             
-            var note = await repository.GetAsync(n => n.Id == noteId, tracked: false);
-            
-            await repository.RemoveAsync(note!);
+            await service.DeleteNoteAsync(noteId);
             
             return TypedResults.NoContent();
         }

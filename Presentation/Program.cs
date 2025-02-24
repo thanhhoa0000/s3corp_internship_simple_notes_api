@@ -8,12 +8,10 @@ try
     // Add services to the container.
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
-    
-    builder.Services.AddDependencies(builder.Configuration);
 
     builder.Services.AddControllers();
-    
-    builder.Services.AddAutoMapper(typeof(NoteProfile));
+
+    builder.Services.AddScoped<INoteService, NoteService>();
     
     builder.Services.AddApiVersioning(options =>
         {

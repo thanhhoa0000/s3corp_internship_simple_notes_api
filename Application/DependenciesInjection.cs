@@ -10,6 +10,8 @@ public static class DependenciesInjection
         
         services.AddScoped<INoteService, NoteService>();
         
+        services.AddAutoMapper(typeof(NoteProfile));
+        
         return services;
     }
 }
