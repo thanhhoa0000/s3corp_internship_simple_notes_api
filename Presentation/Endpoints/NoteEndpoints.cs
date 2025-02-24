@@ -139,7 +139,7 @@ public class NoteEndpoints : ICarterModule
     {
         try
         {
-            logger.LogInformation("Deleting note...");git
+            logger.LogInformation("Deleting note...");
             
             await service.DeleteNoteAsync(noteId);
             
