@@ -2,7 +2,7 @@
 
 public static class DependenciesInjection
 {
-    public static IServiceCollection AddDatabaseContext(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<NoteContext>(options
             => options.UseSqlServer(
