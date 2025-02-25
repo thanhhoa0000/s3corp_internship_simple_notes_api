@@ -1,3 +1,5 @@
+using MyNotes.Application;
+
 var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Debug("Initializing main logger ...");
 
@@ -10,8 +12,8 @@ try
     builder.Host.UseNLog();
 
     builder.Services.AddControllers();
-
-    builder.Services.AddScoped<INoteService, NoteService>();
+    
+    builder.Services.AddApplication(builder.Configuration);
     
     builder.Services.AddApiVersioning(options =>
         {

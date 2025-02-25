@@ -10,7 +10,7 @@ global using AutoMapper;
 
 global using MyNotes.Application.Interfaces;
 global using MyNotes.Application.Dtos;
-global using MyNotes.Application.Services;
 global using MyNotes.Application.Mapper;
+global using MyNotes.Application.Services;
 
 global using MyNotes.Domain.Interfaces;
